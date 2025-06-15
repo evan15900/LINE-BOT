@@ -15,7 +15,14 @@ from linebot.v3.webhooks import MessageEvent, TextMessageContent
 from linebot.v3.messaging import (
     Configuration, ApiClient, MessagingApi,
     ReplyMessageRequest,
-    TextMessage
+    TextMessage,
+    TemplateMessage, ConfirmTemplate, MessageAction,
+    CarouselTemplate,
+    CarouselColumn,
+    URIAction,
+    PostbackAction,
+    ImageCarouselTemplate,
+    ImageCarouselColumn,
 )
 
 app = Flask(__name__)
@@ -33,24 +40,86 @@ def callback():
         abort(400)
     return 'OK'
 
-
-import google.generativeai as genai
-
-genai.configure(api_key=os.getenv('GOOGLE_API_KEY'))
-model = genai.GenerativeModel('gemini-2.0-flash')
-def ask_gemini(question):
-  response = model.generate_content(question)
-  return response.text
-
 @line_handler.add(MessageEvent, message=TextMessageContent)
 def handle_message(event):
     with ApiClient(configuration) as api_client:
         line_bot_api = MessagingApi(api_client)
-        response = ask_gemini(event.message.text)
+
+        action = event.message.text
+        if action == 'confirm':
+          template = ConfirmTemplate(
+              text='你喜歡中山大學嗎?',
+              actions=[
+                  MessageAction(label='是',text='我喜歡'),
+                  MessageAction(label='否',text='我不喜歡')
+              ]
+            )
+          reply = TemplateMessage(
+              alt_text='確認視窗',
+              template=template
+          )
+        elif action == 'carousel':
+          carousel_template = CarouselTemplate(
+            columns=[
+              CarouselColumn(
+                thumbnail_image_url='https://cdn.pixabay.com/photo/2020/10/18/13/47/tokyo-tower-5664846_1280.jpg',
+                title='東京',
+                text='日本的首都東京是政治、文化和經濟的中心地',
+                actions=[
+                  URIAction(label='旅遊指南', uri='https://www.gltjp.com/zh-hant/article/item/20183/'),
+                  MessageAction(label='投票', text='我投東京一票')
+                ]
+              ),
+              CarouselColumn(
+                thumbnail_image_url='https://cdn.pixabay.com/photo/2016/11/29/12/55/architecture-1869661_1280.jpg',
+                title='京都',
+                text='日本著名的文化古都，至今仍保留著許多具有歷史價值的建築物',
+                actions=[
+                    URIAction(label='旅遊指南', uri='https://www.gltjp.com/zh-hant/article/item/20205/'),
+                    MessageAction(label='投票', text='我投京都一票')
+                ]
+              )
+            ]
+          )
+          reply = TemplateMessage(
+            alt_text='輪播視窗',
+            template=carousel_template
+          )
+        elif action == 'image_carousel':
+          image_carousel_template = ImageCarouselTemplate(
+            columns=[
+              ImageCarouselColumn(
+                image_url='https://cdn.pixabay.com/photo/2020/10/18/13/47/tokyo-tower-5664846_1280.jpg',
+                action=URIAction(
+                  label='東京旅遊指南',
+                  uri='https://www.gltjp.com/zh-hant/article/item/20183/'
+                )
+              ),
+              ImageCarouselColumn(
+                image_url='https://cdn.pixabay.com/photo/2016/11/29/12/55/architecture-1869661_1280.jpg',
+                action=URIAction(
+                  label='京都旅遊指南',
+                  uri='https://www.gltjp.com/zh-hant/article/item/20205/'
+                )
+              )
+            ]
+          )
+
+          reply = TemplateMessage(
+              alt_text='圖片輪播視窗',
+              template=image_carousel_template
+          )
+
+
+        else:
+          reply = TextMessage(text='請輸入"confirm/carousel/image_carousel"')
+
         line_bot_api.reply_message(
             ReplyMessageRequest(
                 reply_token=event.reply_token,
-                messages=[TextMessage(text=response)]
+                messages=[
+                    reply
+                ]
             )
         )
 
