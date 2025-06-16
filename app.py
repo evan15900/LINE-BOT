@@ -58,54 +58,6 @@ def handle_message(event):
               template=A_template
           )
 
-        elif action == '命運石之門':
-            B_template=ButtonsTemplate(
-              thumbnail_image_url='https://miro.medium.com/v2/resize:fit:600/1*swXnbmu1OzhvVypMeEDqPA.jpeg',
-              title="命運石之門(2011)",
-              text="由WHITE FOX製作的動畫，改編自5pb.所製作的一系列視覺小說遊戲，後有續作「命運石之門0」與劇場版",
-              actions=[
-                URIAction(label="介紹", uri="https://zh.moegirl.org.cn/zh-tw/%E5%91%BD%E8%BF%90%E7%9F%B3%E4%B9%8B%E9%97%A8%E7%B3%BB%E5%88%97"),
-                URIAction(label="網路評價", uri="https://www.dcard.tw/f/acg/p/242283430"),
-                URIAction(label="正版免費觀看管道", uri="https://www.stockwich.com/2023/08/18/madoka-magica/")
-              ]
-            )
-          reply = TemplateMessage(
-              alt_text='圖片視窗',
-              template=B_template
-          )
-
-        elif action == '孤獨搖滾':
-            C_template=ButtonsTemplate(
-              thumbnail_image_url='https://preview.redd.it/bocchi-the-rock-compilation-movie-teaser-visual-v0-5b4g5vkqx51b1.jpg?auto=webp&s=7b6bd3d5ff98391a4ae786cdd37882d6b5c167bd',
-              title="孤獨搖滾(2022)",
-              text="由CloverWorks製作的動畫，改編自濱路晶創作的同名四格漫畫。講述內向女中學生後藤一里偶然加入「團結Band」，與三名性格各異的少女結識並攜手完成樂團夢想",
-              actions=[
-                URIAction(label="介紹", uri="https://zh.wikipedia.org/zh-tw/%E5%AD%A4%E7%8D%A8%E6%90%96%E6%BB%BE%EF%BC%81_(%E5%8B%95%E7%95%AB)"),
-                URIAction(label="網路評價", uri="https://www.dcard.tw/f/acg/p/240685542"),
-                URIAction(label="正版免費觀看管道", uri="https://ani.gamer.com.tw/animeVideo.php?sn=31599")
-              ]
-            )
-          reply = TemplateMessage(
-              alt_text='圖片視窗',
-              template=C_template
-          )
-
-        elif action == '比宇宙更遠的地方':
-            D_template=ButtonsTemplate(
-              thumbnail_image_url='https://truth.bahamut.com.tw/s01/202402/8603ecdb498a1a061ec48219a96508fd.JPG',
-              title="比宇宙更遠的地方(2018)",
-              text="由MADHOUSE製作的原創TV動畫，講述前往南極旅行的女高中生們的故事。",
-              actions=[
-                URIAction(label="介紹", uri="https://zh.moegirl.org.cn/zh-tw/%E6%AF%94%E5%AE%87%E5%AE%99%E6%9B%B4%E8%BF%9C%E7%9A%84%E5%9C%B0%E6%96%B9"),
-                URIAction(label="網路評價", uri="https://acg.gamer.com.tw/commentList.php?acg_sn=92450"),
-                URIAction(label="正版免費觀看管道", uri="https://www.youtube.com/playlist?list=PLC18xlbCdwtQaJ1X7OBHj3-AY7EN7WUJb")
-              ]
-            )
-          reply = TemplateMessage(
-              alt_text='圖片視窗',
-              template=D_template
-          )
-
         else:
           reply = TextMessage(text='請在選單上選擇一個作品')
 
