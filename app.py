@@ -23,6 +23,7 @@ from linebot.v3.messaging import (
 app = Flask(__name__)
 
 configuration = Configuration(access_token=os.getenv('LINE_Channel_access_token'))
+line_handler = WebhookHandler(os.getenv('LINE_Channel_secret'))
 
 with ApiClient(configuration) as api_client:
     line_bot_api = MessagingApi(api_client)
