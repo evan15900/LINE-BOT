@@ -51,7 +51,7 @@ def handle_message(event):
               actions=[
                 URIAction(label="介紹", uri="https://zh.moegirl.org.cn/zh-tw/%E9%AD%94%E6%B3%95%E5%B0%91%E5%A5%B3%E5%B0%8F%E5%9C%86"),
                 URIAction(label="網路評價", uri="https://www.stockwich.com/2023/08/18/madoka-magica/"),
-                MessageAction(label='正版免費觀看管道', text='暫無')
+                MessageAction(label='正版免費觀看管道', text='魔法少女小圓台灣暫無正版觀看管道')
               ]
             )
           reply = TemplateMessage(
@@ -67,7 +67,7 @@ def handle_message(event):
               actions=[
                 URIAction(label="介紹", uri="https://zh.moegirl.org.cn/zh-tw/%E5%91%BD%E8%BF%90%E7%9F%B3%E4%B9%8B%E9%97%A8%E7%B3%BB%E5%88%97"),
                 URIAction(label="網路評價", uri="https://www.dcard.tw/f/acg/p/242283430"),
-                MessageAction(label='正版免費觀看管道', text='暫無')
+                MessageAction(label='正版免費觀看管道', text='命運石之門台灣暫無正版觀看管道')
               ]
             )
           reply = TemplateMessage(
@@ -83,7 +83,7 @@ def handle_message(event):
               actions=[
                 URIAction(label="介紹", uri="https://zh.wikipedia.org/zh-tw/%E5%AD%A4%E7%8D%A8%E6%90%96%E6%BB%BE%EF%BC%81_(%E5%8B%95%E7%95%AB)"),
                 URIAction(label="網路評價", uri="https://www.dcard.tw/f/acg/p/240685542"),
-                URIAction(label="正版免費觀看管道", uri="https://ani.gamer.com.tw/animeVideo.php?sn=31599")
+                URIAction(label="正版免費觀看管道", uri="https://www.dcard.tw/f/acg/p/240685542")
               ]
             )
           reply = TemplateMessage(
