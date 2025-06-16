@@ -13,115 +13,53 @@ from linebot.v3 import WebhookHandler
 from linebot.v3.exceptions import InvalidSignatureError
 from linebot.v3.webhooks import MessageEvent, TextMessageContent
 from linebot.v3.messaging import (
-    Configuration, ApiClient, MessagingApi,
-    ReplyMessageRequest,
-    TextMessage,
-    TemplateMessage, ConfirmTemplate, MessageAction,
-    CarouselTemplate,
-    CarouselColumn,
-    URIAction,
-    PostbackAction,
-    ImageCarouselTemplate,
-    ImageCarouselColumn,
+    Configuration, ApiClient, MessagingApi, MessagingApiBlob,
+    RichMenuSize, RichMenuRequest, RichMenuArea, RichMenuBounds,
+    MessageAction, URIAction, DatetimePickerAction
 )
+
+
 
 app = Flask(__name__)
 
 configuration = Configuration(access_token=os.getenv('LINE_Channel_access_token'))
-line_handler = WebhookHandler(os.getenv('LINE_Channel_secret'))
 
-@app.route("/callback", methods=['POST'])
-def callback():
-    signature = request.headers['X-Line-Signature']
-    body = request.get_data(as_text=True)
-    try:
-        line_handler.handle(body, signature)
-    except InvalidSignatureError:
-        abort(400)
-    return 'OK'
-
-@line_handler.add(MessageEvent, message=TextMessageContent)
-def handle_message(event):
-    with ApiClient(configuration) as api_client:
-        line_bot_api = MessagingApi(api_client)
-
-        action = event.message.text
-        if action == 'confirm':
-          template = ConfirmTemplate(
-              text='你喜歡中山大學嗎?',
-              actions=[
-                  MessageAction(label='是',text='我喜歡'),
-                  MessageAction(label='否',text='我不喜歡')
-              ]
+with ApiClient(configuration) as api_client:
+    line_bot_api = MessagingApi(api_client)
+    line_bot_blob_api = MessagingApiBlob(api_client)
+    # 建立 rich menu 請求
+    rich_menu_request = RichMenuRequest(
+        size=RichMenuSize(width=800, height=270),
+        selected=False,
+        name='My Rich Menu',
+        chatBarText='開啟選單',
+        areas=[
+            RichMenuArea(
+                bounds=RichMenuBounds(x=0, y=0, width=266, height=270),
+                action=URIAction(label='查看詳情', uri='https://zh.wikipedia.org/zh-tw/%E5%BC%B7%E9%A2%A8%E5%90%B9%E6%8B%82')
+            ),
+            RichMenuArea(
+                bounds=RichMenuBounds(x=266, y=0, width=267, height=270),
+                action=MessageAction(text="推薦熱血運動番強風吹拂")
+            ),
+            RichMenuArea(
+                bounds=RichMenuBounds(x=533, y=0, width=267, height=270),
+                action=DatetimePickerAction(label="選擇時間", data="action=richmenu", mode="datetime")
             )
-          reply = TemplateMessage(
-              alt_text='確認視窗',
-              template=template
-          )
-        elif action == 'carousel':
-          carousel_template = CarouselTemplate(
-            columns=[
-              CarouselColumn(
-                thumbnail_image_url='https://cdn.pixabay.com/photo/2020/10/18/13/47/tokyo-tower-5664846_1280.jpg',
-                title='東京',
-                text='日本的首都東京是政治、文化和經濟的中心地',
-                actions=[
-                  URIAction(label='旅遊指南', uri='https://www.gltjp.com/zh-hant/article/item/20183/'),
-                  MessageAction(label='投票', text='我投東京一票')
-                ]
-              ),
-              CarouselColumn(
-                thumbnail_image_url='https://cdn.pixabay.com/photo/2016/11/29/12/55/architecture-1869661_1280.jpg',
-                title='京都',
-                text='日本著名的文化古都，至今仍保留著許多具有歷史價值的建築物',
-                actions=[
-                    URIAction(label='旅遊指南', uri='https://www.gltjp.com/zh-hant/article/item/20205/'),
-                    MessageAction(label='投票', text='我投京都一票')
-                ]
-              )
-            ]
-          )
-          reply = TemplateMessage(
-            alt_text='輪播視窗',
-            template=carousel_template
-          )
-        elif action == 'image_carousel':
-          image_carousel_template = ImageCarouselTemplate(
-            columns=[
-              ImageCarouselColumn(
-                image_url='https://cdn.pixabay.com/photo/2020/10/18/13/47/tokyo-tower-5664846_1280.jpg',
-                action=URIAction(
-                  label='東京旅遊指南',
-                  uri='https://www.gltjp.com/zh-hant/article/item/20183/'
-                )
-              ),
-              ImageCarouselColumn(
-                image_url='https://cdn.pixabay.com/photo/2016/11/29/12/55/architecture-1869661_1280.jpg',
-                action=URIAction(
-                  label='京都旅遊指南',
-                  uri='https://www.gltjp.com/zh-hant/article/item/20205/'
-                )
-              )
-            ]
-          )
-
-          reply = TemplateMessage(
-              alt_text='圖片輪播視窗',
-              template=image_carousel_template
-          )
-
-
-        else:
-          reply = TextMessage(text='請輸入"confirm/carousel/image_carousel"')
-
-        line_bot_api.reply_message(
-            ReplyMessageRequest(
-                reply_token=event.reply_token,
-                messages=[
-                    reply
-                ]
-            )
+        ]
+    )
+    # 創建 Rich Menu
+    rich_menu_id = line_bot_api.create_rich_menu(rich_menu_request=rich_menu_request).rich_menu_id
+    print(f"Rich menu created with ID: {rich_menu_id}")
+    # 上傳選單背景圖
+    with open('https://cdn.pixabay.com/photo/2025/05/18/14/05/congratulations-9607355_1280.png', 'rb') as image:
+        line_bot_blob_api.set_rich_menu_image(
+            rich_menu_id=rich_menu_id,
+            body=bytearray(image.read()),
+            _headers={'Content-Type': 'image/png'}
         )
+    # 將 Rich Menu 設為預設
+    line_bot_api.set_default_rich_menu(rich_menu_id)
 
 
 
