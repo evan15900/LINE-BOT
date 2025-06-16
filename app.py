@@ -44,7 +44,7 @@ def handle_message(event):
 
         action = event.message.text
         if action == '魔法少女小圓':
-          TemplateMessage(
+          Button_Template = TemplateMessage(
             alt_text="作品推薦",
             template=ButtonsTemplate(
               thumbnail_image_url='https://www.inmediahk.net/files/styles/w775/public/column_images/856137005377_anime-Puella-Magi-Madoka-Magica-the-Movie-Rebellion-DVD-Blu-ray-Hyb-Limited-CD.jpg?itok=71v4ED-u',
@@ -58,9 +58,13 @@ def handle_message(event):
               ]
             )
           )
+          reply = TemplateMessage(
+              alt_text='圖片視窗',
+              template=Button_Template
+          )
 
         elif action == '命運石之門':
-          TemplateMessage(
+          Button_Template = TemplateMessage(
             alt_text="作品推薦",
             template=ButtonsTemplate(
               thumbnail_image_url='https://miro.medium.com/v2/resize:fit:600/1*swXnbmu1OzhvVypMeEDqPA.jpeg',
@@ -74,9 +78,13 @@ def handle_message(event):
               ]
             )
           )
+          reply = TemplateMessage(
+              alt_text='圖片視窗',
+              template=Button_Template
+          )
 
         elif action == '孤獨搖滾':
-          TemplateMessage(
+          Button_Template = TemplateMessage(
             alt_text="作品推薦",
             template=ButtonsTemplate(
               thumbnail_image_url='https://preview.redd.it/bocchi-the-rock-compilation-movie-teaser-visual-v0-5b4g5vkqx51b1.jpg?auto=webp&s=7b6bd3d5ff98391a4ae786cdd37882d6b5c167bd',
@@ -90,9 +98,13 @@ def handle_message(event):
               ]
             )
           )
+          reply = TemplateMessage(
+              alt_text='圖片視窗',
+              template=Button_Template
+          )
 
         elif action == '比宇宙更遠的地方':
-          TemplateMessage(
+          Button_Template = TemplateMessage(
             alt_text="作品推薦",
             template=ButtonsTemplate(
               thumbnail_image_url='https://truth.bahamut.com.tw/s01/202402/8603ecdb498a1a061ec48219a96508fd.JPG',
@@ -105,6 +117,10 @@ def handle_message(event):
                 URIAction(label="正版免費觀看管道", uri="https://www.youtube.com/playlist?list=PLC18xlbCdwtQaJ1X7OBHj3-AY7EN7WUJb")
               ]
             )
+          )
+          reply = TemplateMessage(
+              alt_text='圖片視窗',
+              template=Button_Template
           )
 
         else:
