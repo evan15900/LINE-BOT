@@ -45,13 +45,13 @@ def handle_message(event):
         action = event.message.text
         if action == '魔法少女小圓':
           template_A = ButtonsTemplate(
-              thumbnail_image_url='https://www.inmediahk.net/files/styles/w775/public/column_images/856137005377_anime-Puella-Magi-Madoka-Magica-the-Movie-Rebellion-DVD-Blu-ray-Hyb-Limited-CD.jpg?itok=71v4ED-u',
+              thumbnail_image_url='https://www.inmediahk.net/files/styles/w775/public/column_images/856137005377_anime-Puella-Magi-Madoka-Magica-the-Movie-Rebellion-DVD-Blu-ray-Hyb-Limited-CD.jpg',
               title="魔法少女小圓(2011)",
               text="由日本動畫公司SHAFT製作的原創電視動畫，是唯一同時獲得日本動畫指標性三大獎的動畫，也是最賣座且最重要的作品之一，後有劇場版與外傳",
               actions=[
                 URIAction(label="介紹", uri="https://zh.moegirl.org.cn/zh-tw/%E9%AD%94%E6%B3%95%E5%B0%91%E5%A5%B3%E5%B0%8F%E5%9C%86"),
                 URIAction(label="網路評價", uri="https://www.stockwich.com/2023/08/18/madoka-magica/"),
-                MessageAction(label='正版免費觀看管道', text='魔法少女小圓台灣暫無正版觀看管道')
+                TextMessage(text='魔法少女小圓台灣暫無正版觀看管道')
               ]
             )
           reply = TemplateMessage(
@@ -67,7 +67,7 @@ def handle_message(event):
               actions=[
                 URIAction(label="介紹", uri="https://zh.moegirl.org.cn/zh-tw/%E5%91%BD%E8%BF%90%E7%9F%B3%E4%B9%8B%E9%97%A8%E7%B3%BB%E5%88%97"),
                 URIAction(label="網路評價", uri="https://www.dcard.tw/f/acg/p/242283430"),
-                MessageAction(label='正版免費觀看管道', text='命運石之門台灣暫無正版觀看管道')
+                TextMessage(text='命運石之門台灣暫無正版觀看管道')
               ]
             )
           reply = TemplateMessage(
@@ -77,13 +77,13 @@ def handle_message(event):
 
         elif action == '孤獨搖滾':
           template_C = ButtonsTemplate(
-              thumbnail_image_url='https://preview.redd.it/bocchi-the-rock-compilation-movie-teaser-visual-v0-5b4g5vkqx51b1.jpg?auto=webp&s=7b6bd3d5ff98391a4ae786cdd37882d6b5c167bd',
+              thumbnail_image_url='https://cdn.donmai.us/sample/b2/a4/__gotoh_hitori_kita_ikuyo_ijichi_nijika_and_yamada_ryo_bocchi_the_rock_drawn_by_kerorira__sample-b2a458532214cc1c7190b8f709b24d4c.jpg',
               title="孤獨搖滾(2022)",
               text="由CloverWorks製作的動畫，改編自濱路晶創作的同名四格漫畫。講述內向女中學生後藤一里偶然加入「團結Band」，與三名性格各異的少女結識並攜手完成樂團夢想",
               actions=[
                 URIAction(label="介紹", uri="https://zh.wikipedia.org/zh-tw/%E5%AD%A4%E7%8D%A8%E6%90%96%E6%BB%BE%EF%BC%81_(%E5%8B%95%E7%95%AB)"),
                 URIAction(label="網路評價", uri="https://www.dcard.tw/f/acg/p/240685542"),
-                URIAction(label="正版免費觀看管道", uri="https://www.dcard.tw/f/acg/p/240685542")
+                URIAction(label="正版免費觀看管道", uri="https://ani.gamer.com.tw/animeVideo.php?sn=31599")
               ]
             )
           reply = TemplateMessage(
