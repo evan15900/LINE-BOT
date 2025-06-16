@@ -43,7 +43,7 @@ def handle_message(event):
 
         action = event.message.text
         if action == '魔法少女小圓':
-          template=ButtonsTemplate(
+          B_template=ButtonsTemplate(
             thumbnail_image_url='https://www.inmediahk.net/files/styles/w775/public/column_images/856137005377_anime-Puella-Magi-Madoka-Magica-the-Movie-Rebellion-DVD-Blu-ray-Hyb-Limited-CD.jpg?itok=71v4ED-u',
             title="魔法少女小圓(2011)",
             text="由日本動畫公司SHAFT製作的原創電視動畫，是唯一同時獲得日本動畫指標性三大獎的動畫，也是最賣座且最重要的作品之一，後有劇場版與外傳",
@@ -55,11 +55,11 @@ def handle_message(event):
           )
           reply = TemplateMessage(
               alt_text='圖片視窗',
-              template=template
+              template=B_template
           )
 
         elif action == '命運石之門':
-            template=ButtonsTemplate(
+            B_template=ButtonsTemplate(
               thumbnail_image_url='https://miro.medium.com/v2/resize:fit:600/1*swXnbmu1OzhvVypMeEDqPA.jpeg',
               title="命運石之門(2011)",
               text="由WHITE FOX製作的動畫，改編自5pb.所製作的一系列視覺小說遊戲，後有續作「命運石之門0」與劇場版",
@@ -71,11 +71,11 @@ def handle_message(event):
             )
           reply = TemplateMessage(
               alt_text='圖片視窗',
-              template=template
+              template=B_template
           )
 
         elif action == '孤獨搖滾':
-            template=ButtonsTemplate(
+            B_template=ButtonsTemplate(
               thumbnail_image_url='https://preview.redd.it/bocchi-the-rock-compilation-movie-teaser-visual-v0-5b4g5vkqx51b1.jpg?auto=webp&s=7b6bd3d5ff98391a4ae786cdd37882d6b5c167bd',
               title="孤獨搖滾(2022)",
               text="由CloverWorks製作的動畫，改編自濱路晶創作的同名四格漫畫。講述內向女中學生後藤一里偶然加入「團結Band」，與三名性格各異的少女結識並攜手完成樂團夢想",
@@ -87,11 +87,11 @@ def handle_message(event):
             )
           reply = TemplateMessage(
               alt_text='圖片視窗',
-              template=template
+              template=B_template
           )
 
         elif action == '比宇宙更遠的地方':
-            template=ButtonsTemplate(
+            B_template=ButtonsTemplate(
               thumbnail_image_url='https://truth.bahamut.com.tw/s01/202402/8603ecdb498a1a061ec48219a96508fd.JPG',
               title="比宇宙更遠的地方(2018)",
               text="由MADHOUSE製作的原創TV動畫，講述前往南極旅行的女高中生們的故事。",
@@ -103,7 +103,7 @@ def handle_message(event):
             )
           reply = TemplateMessage(
               alt_text='圖片視窗',
-              template=template
+              template=B_template
           )
 
         else:
