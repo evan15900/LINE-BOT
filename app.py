@@ -44,8 +44,6 @@ def handle_message(event):
 
         action = event.message.text
         if action == '魔法少女小圓':
-          Button_Template = TemplateMessage(
-            alt_text="作品推薦",
             template=ButtonsTemplate(
               thumbnail_image_url='https://www.inmediahk.net/files/styles/w775/public/column_images/856137005377_anime-Puella-Magi-Madoka-Magica-the-Movie-Rebellion-DVD-Blu-ray-Hyb-Limited-CD.jpg?itok=71v4ED-u',
               title="魔法少女小圓(2011)",
@@ -57,15 +55,12 @@ def handle_message(event):
                 MessageAction(label="正版免費觀看管道", text="暫無")
               ]
             )
-          )
           reply = TemplateMessage(
               alt_text='圖片視窗',
-              template=Button_Template
+              template=template
           )
 
         elif action == '命運石之門':
-          Button_Template = TemplateMessage(
-            alt_text="作品推薦",
             template=ButtonsTemplate(
               thumbnail_image_url='https://miro.medium.com/v2/resize:fit:600/1*swXnbmu1OzhvVypMeEDqPA.jpeg',
               title="命運石之門(2011)",
@@ -80,12 +75,10 @@ def handle_message(event):
           )
           reply = TemplateMessage(
               alt_text='圖片視窗',
-              template=Button_Template
+              template=template
           )
 
         elif action == '孤獨搖滾':
-          Button_Template = TemplateMessage(
-            alt_text="作品推薦",
             template=ButtonsTemplate(
               thumbnail_image_url='https://preview.redd.it/bocchi-the-rock-compilation-movie-teaser-visual-v0-5b4g5vkqx51b1.jpg?auto=webp&s=7b6bd3d5ff98391a4ae786cdd37882d6b5c167bd',
               title="孤獨搖滾(2022)",
@@ -100,12 +93,10 @@ def handle_message(event):
           )
           reply = TemplateMessage(
               alt_text='圖片視窗',
-              template=Button_Template
+              template=template
           )
 
         elif action == '比宇宙更遠的地方':
-          Button_Template = TemplateMessage(
-            alt_text="作品推薦",
             template=ButtonsTemplate(
               thumbnail_image_url='https://truth.bahamut.com.tw/s01/202402/8603ecdb498a1a061ec48219a96508fd.JPG',
               title="比宇宙更遠的地方(2018)",
@@ -120,7 +111,7 @@ def handle_message(event):
           )
           reply = TemplateMessage(
               alt_text='圖片視窗',
-              template=Button_Template
+              template=template
           )
 
         else:
