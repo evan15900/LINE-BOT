@@ -19,7 +19,6 @@ from linebot.v3.messaging import (
     TemplateMessage,
     ButtonsTemplate,
     URIAction,
-    MessageAction,
 )
 
 app = Flask(__name__)
@@ -49,9 +48,9 @@ def handle_message(event):
               title="魔法少女小圓(2011)",
               text="由日本動畫公司SHAFT製作的原創電視動畫，是唯一同時獲得日本動畫指標性三大獎的動畫，也是最賣座且最重要的作品之一，後有劇場版與外傳",
               actions=[
-                URIAction(label="介紹", uri="https://zh.moegirl.org.cn/zh-tw/%E9%AD%94%E6%B3%95%E5%B0%91%E5%A5%B3%E5%B0%8F%E5%9C%86"),
+                URIAction(label="介紹", uri="https://zh.moegirl.org.cn/zh-tw/%E9%AD%94%E6%B3%95%E5%B0%91%E5%A5%B3%E5%B0%8F%E5%9C%86"),,
                 URIAction(label="網路評價", uri="https://www.stockwich.com/2023/08/18/madoka-magica/"),
-                MessageAction(label="正版免費觀看管道", text="暫無")
+                URIAction(label="正版免費觀看管道", uri="https://www.stockwich.com/2023/08/18/madoka-magica/")
               ]
             )
           reply = TemplateMessage(
@@ -67,7 +66,7 @@ def handle_message(event):
               actions=[
                 URIAction(label="介紹", uri="https://zh.moegirl.org.cn/zh-tw/%E5%91%BD%E8%BF%90%E7%9F%B3%E4%B9%8B%E9%97%A8%E7%B3%BB%E5%88%97"),
                 URIAction(label="網路評價", uri="https://www.dcard.tw/f/acg/p/242283430"),
-                MessageAction(label="正版免費觀看管道", text="暫無")
+                URIAction(label="正版免費觀看管道", uri="https://www.stockwich.com/2023/08/18/madoka-magica/")
               ]
             )
           reply = TemplateMessage(
