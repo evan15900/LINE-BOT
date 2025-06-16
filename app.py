@@ -16,13 +16,9 @@ from linebot.v3.messaging import (
     Configuration, ApiClient, MessagingApi,
     ReplyMessageRequest,
     TextMessage,
-    TemplateMessage, ConfirmTemplate, MessageAction,
-    CarouselTemplate,
-    CarouselColumn,
+    TemplateMessage,
+    ButtonsTemplate,
     URIAction,
-    PostbackAction,
-    ImageCarouselTemplate,
-    ImageCarouselColumn,
 )
 
 app = Flask(__name__)
@@ -40,80 +36,78 @@ def callback():
         abort(400)
     return 'OK'
 
-
 @line_handler.add(MessageEvent, message=TextMessageContent)
 def handle_message(event):
     with ApiClient(configuration) as api_client:
         line_bot_api = MessagingApi(api_client)
 
         action = event.message.text
-        if action == 'confirm':
-          template = ConfirmTemplate(
-              text='你喜歡中山大學嗎?',
+        if action == '魔法少女小圓':
+            template = ButtonsTemplate(
+              thumbnail_image_url='https://www.inmediahk.net/files/styles/w775/public/column_images/856137005377_anime-Puella-Magi-Madoka-Magica-the-Movie-Rebellion-DVD-Blu-ray-Hyb-Limited-CD.jpg?itok=71v4ED-u',
+              title="魔法少女小圓(2011)",
+              text="由日本動畫公司SHAFT製作的原創電視動畫，是唯一同時獲得日本動畫指標性三大獎的動畫，也是最賣座且最重要的作品之一，後有劇場版與外傳",
               actions=[
-                  MessageAction(label='是',text='我喜歡'),
-                  MessageAction(label='否',text='我不喜歡')
+                URIAction(label="介紹", uri="https://zh.moegirl.org.cn/zh-tw/%E9%AD%94%E6%B3%95%E5%B0%91%E5%A5%B3%E5%B0%8F%E5%9C%86"),
+                URIAction(label="網路評價", uri="https://www.stockwich.com/2023/08/18/madoka-magica/"),
+                URIAction(label="正版免費觀看管道", uri="https://www.stockwich.com/2023/08/18/madoka-magica/")
               ]
             )
           reply = TemplateMessage(
-              alt_text='確認視窗',
+              alt_text='圖片視窗',
               template=template
           )
-        elif action == 'carousel':
-          carousel_template = CarouselTemplate(
-            columns=[
-              CarouselColumn(
-                thumbnail_image_url='https://cdn.pixabay.com/photo/2020/10/18/13/47/tokyo-tower-5664846_1280.jpg',
-                title='東京',
-                text='日本的首都東京是政治、文化和經濟的中心地',
-                actions=[
-                  URIAction(label='旅遊指南', uri='https://www.gltjp.com/zh-hant/article/item/20183/'),
-                  MessageAction(label='投票', text='我投東京一票')
-                ]
-              ),
-              CarouselColumn(
-                thumbnail_image_url='https://cdn.pixabay.com/photo/2016/11/29/12/55/architecture-1869661_1280.jpg',
-                title='京都',
-                text='日本著名的文化古都，至今仍保留著許多具有歷史價值的建築物',
-                actions=[
-                    URIAction(label='旅遊指南', uri='https://www.gltjp.com/zh-hant/article/item/20205/'),
-                    MessageAction(label='投票', text='我投京都一票')
-                ]
-              )
-            ]
-          )
+
+        elif action == '命運石之門':
+            template=ButtonsTemplate(
+              thumbnail_image_url='https://miro.medium.com/v2/resize:fit:600/1*swXnbmu1OzhvVypMeEDqPA.jpeg',
+              title="命運石之門(2011)",
+              text="由WHITE FOX製作的動畫，改編自5pb.所製作的一系列視覺小說遊戲，後有續作「命運石之門0」與劇場版",
+              actions=[
+                URIAction(label="介紹", uri="https://zh.moegirl.org.cn/zh-tw/%E5%91%BD%E8%BF%90%E7%9F%B3%E4%B9%8B%E9%97%A8%E7%B3%BB%E5%88%97"),
+                URIAction(label="網路評價", uri="https://www.dcard.tw/f/acg/p/242283430"),
+                URIAction(label="正版免費觀看管道", uri="https://www.stockwich.com/2023/08/18/madoka-magica/")
+              ]
+            )
           reply = TemplateMessage(
-            alt_text='輪播視窗',
-            template=carousel_template
-          )
-        elif action == 'image_carousel':
-          image_carousel_template = ImageCarouselTemplate(
-            columns=[
-              ImageCarouselColumn(
-                image_url='https://cdn.pixabay.com/photo/2020/10/18/13/47/tokyo-tower-5664846_1280.jpg',
-                action=URIAction(
-                  label='東京旅遊指南',
-                  uri='https://www.gltjp.com/zh-hant/article/item/20183/'
-                )
-              ),
-              ImageCarouselColumn(
-                image_url='https://cdn.pixabay.com/photo/2016/11/29/12/55/architecture-1869661_1280.jpg',
-                action=URIAction(
-                  label='京都旅遊指南',
-                  uri='https://www.gltjp.com/zh-hant/article/item/20205/'
-                )
-              )
-            ]
+              alt_text='圖片視窗',
+              template=template
           )
 
+        elif action == '孤獨搖滾':
+            template=ButtonsTemplate(
+              thumbnail_image_url='https://preview.redd.it/bocchi-the-rock-compilation-movie-teaser-visual-v0-5b4g5vkqx51b1.jpg?auto=webp&s=7b6bd3d5ff98391a4ae786cdd37882d6b5c167bd',
+              title="孤獨搖滾(2022)",
+              text="由CloverWorks製作的動畫，改編自濱路晶創作的同名四格漫畫。講述內向女中學生後藤一里偶然加入「團結Band」，與三名性格各異的少女結識並攜手完成樂團夢想",
+              actions=[
+                URIAction(label="介紹", uri="https://zh.wikipedia.org/zh-tw/%E5%AD%A4%E7%8D%A8%E6%90%96%E6%BB%BE%EF%BC%81_(%E5%8B%95%E7%95%AB)"),
+                URIAction(label="網路評價", uri="https://www.dcard.tw/f/acg/p/240685542"),
+                URIAction(label="正版免費觀看管道", uri="https://ani.gamer.com.tw/animeVideo.php?sn=31599")
+              ]
+            )
           reply = TemplateMessage(
-              alt_text='圖片輪播視窗',
-              template=image_carousel_template
+              alt_text='圖片視窗',
+              template=template
           )
 
+        elif action == '比宇宙更遠的地方':
+            template=ButtonsTemplate(
+              thumbnail_image_url='https://truth.bahamut.com.tw/s01/202402/8603ecdb498a1a061ec48219a96508fd.JPG',
+              title="比宇宙更遠的地方(2018)",
+              text="由MADHOUSE製作的原創TV動畫，講述前往南極旅行的女高中生們的故事。",
+              actions=[
+                URIAction(label="介紹", uri="https://zh.moegirl.org.cn/zh-tw/%E6%AF%94%E5%AE%87%E5%AE%99%E6%9B%B4%E8%BF%9C%E7%9A%84%E5%9C%B0%E6%96%B9"),
+                URIAction(label="網路評價", uri="https://acg.gamer.com.tw/commentList.php?acg_sn=92450"),
+                URIAction(label="正版免費觀看管道", uri="https://www.youtube.com/playlist?list=PLC18xlbCdwtQaJ1X7OBHj3-AY7EN7WUJb")
+              ]
+            )
+          reply = TemplateMessage(
+              alt_text='圖片視窗',
+              template=template
+          )
 
         else:
-          reply = TextMessage(text='請輸入"confirm/carousel/image_carousel"')
+          reply = TextMessage(text='請在選單上選擇一個作品')
 
         line_bot_api.reply_message(
             ReplyMessageRequest(
