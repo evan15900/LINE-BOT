@@ -42,7 +42,7 @@ def handle_message(event):
     with ApiClient(configuration) as api_client:
         line_bot_api = MessagingApi(api_client)
 
-        action = event.message.text
+        action = event.message.text.strip()
         if action == '魔法少女小圓':
             template_MM = ButtonsTemplate(
                 thumbnail_image_url='https://www.inmediahk.net/files/styles/w775/public/column_images/856137005377_anime-Puella-Magi-Madoka-Magica-the-Movie-Rebellion-DVD-Blu-ray-Hyb-Limited-CD.jpg',
