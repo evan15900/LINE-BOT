@@ -72,7 +72,6 @@ def handle_message(event):
                 MessageAction(label="正版免費觀看管道", text="暫無")
               ]
             )
-          )
           reply = TemplateMessage(
               alt_text='圖片視窗',
               template=template
@@ -90,7 +89,6 @@ def handle_message(event):
                 URIAction(label="正版免費觀看管道", uri="https://ani.gamer.com.tw/animeVideo.php?sn=31599")
               ]
             )
-          )
           reply = TemplateMessage(
               alt_text='圖片視窗',
               template=template
@@ -108,7 +106,6 @@ def handle_message(event):
                 URIAction(label="正版免費觀看管道", uri="https://www.youtube.com/playlist?list=PLC18xlbCdwtQaJ1X7OBHj3-AY7EN7WUJb")
               ]
             )
-          )
           reply = TemplateMessage(
               alt_text='圖片視窗',
               template=template
