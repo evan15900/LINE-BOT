@@ -42,73 +42,97 @@ def handle_message(event):
     with ApiClient(configuration) as api_client:
         line_bot_api = MessagingApi(api_client)
 
-        action = event.message.text.strip()
+        action = event.message.text
         if action == '魔法少女小圓':
-            template_MM = ButtonsTemplate(
-                thumbnail_image_url='https://www.inmediahk.net/files/styles/w775/public/column_images/856137005377_anime-Puella-Magi-Madoka-Magica-the-Movie-Rebellion-DVD-Blu-ray-Hyb-Limited-CD.jpg',
-                title="魔法少女小圓(2011)",
-                text="由日本動畫公司SHAFT製作的原創電視動畫，是唯一同時獲得日本動畫指標性三大獎的動畫，也是最賣座且最重要的作品之一，後有劇場版與外傳",
-                actions=[
-                    URIAction(label="介紹", uri="https://zh.moegirl.org.cn/zh-tw/%E9%AD%94%E6%B3%95%E5%B0%91%E5%A5%B3%E5%9C%86"),
-                    URIAction(label="網路評價", uri="https://www.stockwich.com/2023/08/18/madoka-magica/"),
-                    MessageAction(label='正版免費觀看管道', text='魔法少女小圓暫無觀看管道，好想看啊!')
-                ]
+          template_MM = ButtonsTemplate(
+              thumbnail_image_url='https://animeheaven.de/wp-content/uploads/2019/03/MadokaMagica.jpg',
+              title="魔法少女小圓(2011)",
+              text="由SHAFT製作虛淵玄編劇，唯一同時獲得日本動畫指標性三大獎的動畫，也是最賣座且最重要的作品之一，後有劇場版與外傳。",
+              actions=[
+                URIAction(label="介紹", uri="https://zh.moegirl.org.cn/zh-tw/%E9%AD%94%E6%B3%95%E5%B0%91%E5%A5%B3%E5%B0%8F%E5%9C%86"),
+                MessageAction(label='名台詞', text='魔法少女小圓名台詞(不據透)'),
+                URIAction(label="網路評價", uri="https://www.stockwich.com/2023/08/18/madoka-magica/"),
+                MessageAction(label='正版免費觀看管道', text='魔法少女小圓暫無觀看管道，好想看')
+              ]
             )
-            reply = TemplateMessage(
-                alt_text='圖片視窗',
-                template=template_MM
-            )
+          reply = TemplateMessage(
+              alt_text='作品推薦',
+              template=template_MM
+          )
 
         elif action == '命運石之門':
-            template_SG = ButtonsTemplate(
-                thumbnail_image_url='https://miro.medium.com/v2/resize:fit:600/1*swXnbmu1OzhvVypMeEDqPA.jpeg',
-                title="命運石之門(2011)",
-                text="由WHITE FOX製作的動畫，改編自5pb.所製作的一系列視覺小說遊戲，後有續作「命運石之門0」與劇場版",
-                actions=[
-                    URIAction(label="介紹", uri="https://zh.moegirl.org.cn/zh-tw/%E5%91%BD%E8%BF%90%E7%9F%B3%E4%B9%8B%E9%97%A8%E7%B3%BB%E5%88%97"),
-                    URIAction(label="網路評價", uri="https://www.dcard.tw/f/acg/p/242283430"),
-                    MessageAction(label='正版免費觀看管道', text='命運石之門暫無觀看管道，好想看啊!')
-                ]
+          template_SG = ButtonsTemplate(
+              thumbnail_image_url='https://miro.medium.com/v2/resize:fit:600/1*swXnbmu1OzhvVypMeEDqPA.jpeg',
+              title="命運石之門(2011)",
+              text="由WHITE FOX製作的動畫，改編自5pb.所製作的一系列視覺小說遊戲，後有續作「命運石之門0」與劇場版。",
+              actions=[
+                URIAction(label="介紹", uri="https://zh.moegirl.org.cn/zh-tw/%E5%91%BD%E8%BF%90%E7%9F%B3%E4%B9%8B%E9%97%A8%E7%B3%BB%E5%88%97"),
+                MessageAction(label='名台詞', text='命運石之門名台詞(不據透)'),
+                URIAction(label="網路評價", uri="https://www.dcard.tw/f/acg/p/242283430"),
+                MessageAction(label='正版免費觀看管道', text='命運石之門暫無觀看管道，好想看')
+              ]
             )
-            reply = TemplateMessage(
-                alt_text='圖片視窗',
-                template=template_SG
-            )
+          reply = TemplateMessage(
+              alt_text='作品推薦',
+              template=template_SG
+          )
 
         elif action == '孤獨搖滾':
-            template_BTR = ButtonsTemplate(
-                thumbnail_image_url='https://cdn.donmai.us/sample/b2/a4/__gotoh_hitori_kita_ikuyo_ijichi_nijika_and_yamada_ryo_bocchi_the_rock_drawn_by_kerorira__sample-b2a458532214cc1c7190b8f709b24d4c.jpg',
-                title="孤獨搖滾(2022)",
-                text="由CloverWorks製作的動畫，改編自濱路晶創作的同名四格漫畫。講述內向女中學生後藤一里偶然加入「團結Band」，與三名性格各異的少女結識並攜手完成樂團夢想",
-                actions=[
-                    URIAction(label="介紹", uri="https://zh.wikipedia.org/zh-tw/%E5%AD%A4%E7%8D%A8%E6%90%96%E6%BB%BE%EF%BC%81_(%E5%8B%95%E7%95%AB)"),
-                    URIAction(label="網路評價", uri="https://www.dcard.tw/f/acg/p/240685542"),
-                    URIAction(label="正版免費觀看管道", uri="https://ani.gamer.com.tw/animeVideo.php?sn=31599")
-                ]
+          template_BTR = ButtonsTemplate(
+              thumbnail_image_url='https://cdn.donmai.us/sample/b2/a4/__gotoh_hitori_kita_ikuyo_ijichi_nijika_and_yamada_ryo_bocchi_the_rock_drawn_by_kerorira__sample-b2a458532214cc1c7190b8f709b24d4c.jpg',
+              title="孤獨搖滾(2022)",
+              text="由CloverWorks製作的動畫，改編自濱路晶的同名漫畫。講述內向女學生與三名性格各異的少女結識並攜手完成樂團夢想。",
+              actions=[
+                URIAction(label="介紹", uri="https://zh.wikipedia.org/zh-tw/%E5%AD%A4%E7%8D%A8%E6%90%96%E6%BB%BE%EF%BC%81_(%E5%8B%95%E7%95%AB)"),
+                MessageAction(label='名台詞', text='孤獨搖滾名台詞(不據透)'),
+                URIAction(label="網路評價", uri="https://www.dcard.tw/f/acg/p/240685542"),
+                URIAction(label="正版免費觀看管道", uri="https://ani.gamer.com.tw/animeVideo.php?sn=31599")
+              ]
             )
-            reply = TemplateMessage(
-                alt_text='圖片視窗',
-                template=template_BTR
-            )
+          reply = TemplateMessage(
+              alt_text='作品推薦',
+              template=template_BTR
+          )
 
         elif action == '比宇宙更遠的地方':
-            template_FTU = ButtonsTemplate(
-                thumbnail_image_url='https://truth.bahamut.com.tw/s01/202402/8603ecdb498a1a061ec48219a96508fd.JPG',
-                title="比宇宙更遠的地方(2018)",
-                text="由MADHOUSE製作的原創TV動畫，講述前往南極旅行的女高中生們的故事",
-                actions=[
-                    URIAction(label="介紹", uri="https://zh.moegirl.org.cn/zh-tw/%E6%AF%94%E5%AE%87%E5%AE%99%E6%9B%B4%E9%81%A0%E7%9A%84%E5%9C%B0%E6%96%B9"),
-                    URIAction(label="網路評價", uri="https://acg.gamer.com.tw/commentList.php?acg_sn=92450"),
-                    URIAction(label="正版免費觀看管道", uri="https://www.youtube.com/playlist?list=PLC18xlbCdwtQaJ1X7OBHj3-AY7EN7WUJb")
-                ]
+          template_FTU = ButtonsTemplate(
+              thumbnail_image_url='https://truth.bahamut.com.tw/s01/202402/8603ecdb498a1a061ec48219a96508fd.JPG',
+              title="比宇宙更遠的地方(2018)",
+              text="由MADHOUSE製作的原創TV動畫，講述前往南極旅行的女高中生們的故事。",
+              actions=[
+                URIAction(label="介紹", uri="https://zh.moegirl.org.cn/zh-tw/%E6%AF%94%E5%AE%87%E5%AE%99%E6%9B%B4%E8%BF%9C%E7%9A%84%E5%9C%B0%E6%96%B9"),
+                MessageAction(label='名台詞', text='比宇宙更遠的地方名台詞(不據透)'),
+                URIAction(label="網路評價", uri="https://acg.gamer.com.tw/commentList.php?acg_sn=92450"),
+                URIAction(label="正版免費觀看管道", uri="https://www.youtube.com/playlist?list=PLC18xlbCdwtQaJ1X7OBHj3-AY7EN7WUJb")
+              ]
             )
-            reply = TemplateMessage(
-                alt_text='圖片視窗',
-                template=template_FTU
-            )
+          reply = TemplateMessage(
+              alt_text='作品推薦',
+              template=template_FTU
+          )
+        
+        elif action == '魔法少女小圓名台詞(不據透)':
+          reply = TextMessage(
+              text='1.要是別人說懷有希望是錯誤的事，不管幾次我都一定會否定這句話，不管到什麼時候。\n\n2.奇蹟與魔法都是存在的。\n\n3.只為自己而活的話，所有東西都由自己來承擔。\n\n4.已經沒有什麼好怕的了。\n\n5.這才是人類情感的極致，比希望更火熱，比絕望更深切的東西......是愛。'
+              )
+        
+        elif action == '命運石之門名台詞(不據透)':
+          reply = TextMessage(
+              text='1.就算知道方法，也絕對不能去改變過去，絕不能將存在的可能性轉變為既定的現實，未來是沒有人能預測的，是無法重來的，正因如此人們才能接受各種痛苦、不幸與飛來橫禍，邁步前進。\n\n2.時間會隨著人的感覺而變長或變短，相對論真是既浪漫又傷感的東西呢。\n\n3.你的一秒，將成為我的永遠。\n\n4.不管在哪條世界線你都不是一個人，不管在哪條世界線我都一定會找到你，我會不斷的觀測著你，就像你一直在觀測我一樣'
+              )
+        
+        elif action == '孤獨搖滾名台詞(不據透)':
+          reply = TextMessage(              
+              text='1.現實很可怕，但我有預感，接下來有好多有趣的事在等著我。\n\n2.今後也讓我們好好見識吧，小孤獨的搖滾，你的「孤獨搖滾」。\n\n3.形形色色的個性匯聚，那就會成為一首音樂，成為團結Band的特色。\n\n4.要是捨棄了個性，那就跟死了沒區別。'
+              )
+        
+        elif action == '比宇宙更遠的地方名台詞(不據透)':
+          reply = TextMessage(
+              text='1.當你無法回頭的時候，才是真正的旅行。\n\n2.多管閒事不是體貼人，有時不管也是種體貼。\n\n3.在看到陌生的景色前，一直走下去吧！因為無論走到何處，世界都很廣闊。\n\n4.信念堅定和固執己見只有一線之隔。\n\n5.每天倒映在眼中的風景，正在應接不暇的轉變，這正是我們未曾經歷的青春。'
+              )
 
         else:
-            reply = TextMessage(text='請在選單上選擇一個作品')
+          reply = TextMessage(text='請在選單上選擇一個作品')
 
         line_bot_api.reply_message(
             ReplyMessageRequest(
